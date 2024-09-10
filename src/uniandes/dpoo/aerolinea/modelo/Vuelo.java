@@ -1,6 +1,7 @@
 package uniandes.dpoo.aerolinea.modelo;
 
 import java.util.Map;
+import java.util.Collection;
 
 import uniandes.dpoo.aerolinea.tiquetes.Tiquete;
 
@@ -29,8 +30,8 @@ public class Vuelo {
 		return this.avion;
 	}
 	
-	public Tiquete getTiquetes() {
-		return this.tiquetes;
+	public Collection<Tiquete> getTiquetes() {
+		return this.tiquetes.values();
 	}
 	
 	public int venderTiquetes(Cliente cliente, calculadoraTarifas calculadora, itn cantidad) 

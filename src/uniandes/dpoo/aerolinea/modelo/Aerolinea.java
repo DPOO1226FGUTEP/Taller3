@@ -1,6 +1,7 @@
 package uniandes.dpoo.aerolinea.modelo;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -163,10 +164,14 @@ public class Aerolinea
      */
     public Vuelo getVuelo( String codigoRuta, String fechaVuelo )
     {
-    	vuelos = getVuelos();
-        for (Object Vuelo: vuelos) {
-        	if ((Vuelo.))
-        }  
+    	for(Vuelo welo: this.vuelos) {
+    		Ruta ruta = welo.getRuta();
+    		String codigo = ruta.getCodigoRuta();
+    		String fecha = welo.getFecha();
+    		if ((fechaVuelo == fecha)&&(codigoRuta == codigo)) {
+    			return welo;
+    		}
+    	}
         return null;
     }
 
@@ -185,9 +190,12 @@ public class Aerolinea
      */
     public Collection<Tiquete> getTiquetes( )
     {
-        // TODO implementar
-        return null;
-
+    	Collection<Tiquete> TotalTiquetes = new ArrayList<Tiquete>();
+        for (Vuelo welo: vuelos) {
+        	Collection<Tiquete> tiquetes = welo.getTiquetes();
+        		TotalTiquetes.addAll(tiquetes);
+        }
+        return TotalTiquetes;
     }
 
     // ************************************************************************************
