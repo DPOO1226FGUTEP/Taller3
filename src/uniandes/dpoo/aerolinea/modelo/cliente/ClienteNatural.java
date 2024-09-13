@@ -5,32 +5,15 @@ import org.json.JSONObject;
 /**
  * Esta clase se usa para representar a los clientes de la aerolínea que son empresas
  */
-public class ClienteCorporativo extends Cliente
+public class ClienteNatural extends Cliente
 {
-	static String  CORPORATIVO = "CORPORATIVO";
-	static int GRANDE = 3;
-	static int MEDIANA = 2;
-	private String nombreEmpresa;
-	static int PEQUENA = 1;
-	private int tamanoEmpresa;
-    public ClienteCorporativo(String nombreEmpresa, int tamano) {
-    	this.nombreEmpresa = nombreEmpresa;
-    	this.tamanoEmpresa = tamano;
+	static String Natural = "Natural";
+	private String nombre;
+	
+    public ClienteNatural(String nombre) {
+    	this.nombre = nombre;
     }
     
-    public String getNombreEmpresa(){
-    	return this.nombreEmpresa;
-    }
-
-    public int getTamanoEmpresa() {
-    	return this.tamanoEmpresa;
-    }
-    
-    @Override
-    public String getTipoCliente() {
-    	String tipo  = CORPORATIVO;
-    	return tipo;
-    }
     
     @Override
     public String getIdentificador() {
@@ -39,6 +22,10 @@ public class ClienteCorporativo extends Cliente
     	return cosaFea;
     	}
     
+    @Override
+    public String getTipoCliente() {
+    	return Natural;
+    }
   
     
     /**
@@ -48,11 +35,10 @@ public class ClienteCorporativo extends Cliente
      * @param cliente El objeto JSON que contiene la información
      * @return El nuevo objeto inicializado con la información
      */
-    public static ClienteCorporativo cargarDesdeJSON( JSONObject cliente )
+    public static ClienteNatural cargarDesdeJSON( JSONObject cliente )
     {
-        String nombreEmpresa = cliente.getString( "nombreEmpresa" );
-        int tam = cliente.getInt( "tamanoEmpresa" );
-        return new ClienteCorporativo( nombreEmpresa, tam );
+        String nom = cliente.getString( "nombre" );
+        return new ClienteNatural(nom);
     }
 
     /**
@@ -62,9 +48,7 @@ public class ClienteCorporativo extends Cliente
     public JSONObject salvarEnJSON( )
     {
         JSONObject jobject = new JSONObject( );
-        jobject.put( "nombreEmpresa", this.nombreEmpresa );
-        jobject.put( "tamanoEmpresa", this.tamanoEmpresa );
-        jobject.put( "tipo", CORPORATIVO );
+        jobject.put( "nombre", this.nombre );
         return jobject;
     }
 }
